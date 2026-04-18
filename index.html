@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Avinash Chadalavada | Principal Engineer & Manager</title>
+<title>Avinash Chadalavada | Engineer Head / Technical Director</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -97,12 +97,18 @@ img { max-width: 100%; display: block; }
   color: var(--primary); background: var(--primary-glow);
 }
 .theme-toggle {
-  width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--border);
-  background: var(--bg-alt); cursor: pointer; display: flex; align-items: center;
-  justify-content: center; font-size: 1.1rem; color: var(--text-secondary);
-  transition: all var(--transition);
+  width: 52px; height: 28px; border-radius: 14px; border: none;
+  background: var(--border); cursor: pointer; position: relative;
+  transition: background var(--transition); flex-shrink: 0;
 }
-.theme-toggle:hover { color: var(--primary); border-color: var(--primary); }
+[data-theme="dark"] .theme-toggle { background: var(--primary); }
+.theme-toggle::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 22px; height: 22px; border-radius: 50%; background: #fff;
+  transition: transform var(--transition);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+[data-theme="dark"] .theme-toggle::after { transform: translateX(24px); }
 .hamburger {
   display: none; background: none; border: none; cursor: pointer;
   width: 42px; height: 42px; flex-direction: column; align-items: center;
@@ -418,7 +424,7 @@ section:nth-child(even) { background: var(--bg-alt); }
 .cert-info p { font-size: 0.78rem; color: var(--text-muted); }
 
 /* ============ CONTACT ============ */
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.contact-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: start; max-width: 600px; margin: 0 auto; }
 .contact-info h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 16px; }
 .contact-info > p { color: var(--text-secondary); margin-bottom: 32px; font-size: 1rem; }
 .contact-methods { display: flex; flex-direction: column; gap: 18px; }
@@ -443,32 +449,6 @@ section:nth-child(even) { background: var(--bg-alt); }
 }
 .social-link:hover { background: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-3px); }
 
-.contact-form {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 36px;
-}
-.form-group { margin-bottom: 20px; }
-.form-group label {
-  display: block; font-size: 0.82rem; font-weight: 600;
-  margin-bottom: 6px; color: var(--text-secondary);
-}
-.form-group input, .form-group textarea {
-  width: 100%; padding: 12px 16px; border: 1.5px solid var(--border);
-  border-radius: 10px; font-size: 0.92rem; font-family: inherit;
-  background: var(--bg); color: var(--text); transition: all var(--transition);
-  outline: none;
-}
-.form-group input:focus, .form-group textarea:focus {
-  border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow);
-}
-.form-group textarea { resize: vertical; min-height: 120px; }
-.btn-submit {
-  width: 100%; padding: 14px; background: var(--primary);
-  color: #fff; border: none; border-radius: 10px; font-size: 0.95rem;
-  font-weight: 600; cursor: pointer; transition: all var(--transition);
-  font-family: inherit;
-}
-.btn-submit:hover { background: var(--primary-dark); box-shadow: 0 4px 14px rgba(37,99,235,0.35); }
 
 /* ============ FOOTER ============ */
 .footer {
@@ -500,6 +480,53 @@ section:nth-child(even) { background: var(--bg-alt); }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
+/* ============ AI/ML HIGHLIGHT ============ */
+.ai-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(6,182,212,0.12));
+  color: #7c3aed; border: 1px solid rgba(124,58,237,0.3);
+  padding: 3px 10px; border-radius: 20px; font-size: 0.7rem;
+  font-weight: 700; letter-spacing: 0.4px; vertical-align: middle; margin-left: 8px;
+  white-space: nowrap;
+}
+[data-theme="dark"] .ai-badge {
+  background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(6,182,212,0.15));
+  color: #a78bfa; border-color: rgba(139,92,246,0.4);
+}
+.ai-badge i { font-size: 0.65rem; }
+
+.timeline-card.ai-role {
+  border-left: 3px solid #7c3aed;
+  background: linear-gradient(135deg, var(--bg-card) 85%, rgba(124,58,237,0.04) 100%);
+}
+[data-theme="dark"] .timeline-card.ai-role {
+  background: linear-gradient(135deg, var(--bg-card) 85%, rgba(139,92,246,0.07) 100%);
+}
+.timeline-card.ai-role:hover { border-color: #7c3aed; }
+.timeline-dot.ai-dot { border-color: #7c3aed; }
+.timeline-item:first-child .timeline-dot.ai-dot { background: #7c3aed; }
+
+.ai-use-case {
+  background: linear-gradient(135deg, rgba(124,58,237,0.07), rgba(6,182,212,0.05));
+  border: 1px solid rgba(124,58,237,0.2); border-radius: 8px;
+  padding: 10px 14px; margin: 8px 0; list-style: none !important;
+}
+[data-theme="dark"] .ai-use-case {
+  background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.07));
+  border-color: rgba(139,92,246,0.3);
+}
+.ai-use-case::marker { display: none; }
+.ai-use-case strong { color: #7c3aed; }
+[data-theme="dark"] .ai-use-case strong { color: #a78bfa; }
+
+.timeline-tech.ai-tech {
+  background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1));
+  color: #7c3aed; border-color: rgba(124,58,237,0.3);
+}
+[data-theme="dark"] .timeline-tech.ai-tech {
+  color: #a78bfa; border-color: rgba(139,92,246,0.4);
+}
+
 /* ============ BACK TO TOP ============ */
 .back-to-top {
   position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px;
@@ -522,7 +549,6 @@ section:nth-child(even) { background: var(--bg-alt); }
   .hero-image-ring { width: 280px; height: 280px; }
   .hero-floating-card { display: none; }
   .about-grid { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 768px) {
@@ -567,7 +593,7 @@ section:nth-child(even) { background: var(--bg-alt); }
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div style="display:flex;align-items:center;gap:10px;">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -581,15 +607,14 @@ section:nth-child(even) { background: var(--bg-alt); }
     <div class="hero-grid">
       <div class="hero-content">
         <div class="hero-badge"><span class="dot"></span> Open to Opportunities</div>
-        <h1>Hi, I'm <span class="gradient">Avinash Chadalavada</span></h1>
+        <h1>Hi,<br> <span class="gradient">This is Avinash Chadalavada</span></h1>
         <p class="hero-subtitle">Applications, Cloud & Data Principal Engineer & Manager with 10+ years building scalable IoT solutions, cloud platforms, and high-performance web applications.</p>
         <div class="hero-buttons">
           <a href="Avinash_Chadalavada_Resume.pdf" download class="btn btn-primary btn-download"><i class="fas fa-file-pdf"></i> Download Resume <span class="btn-badge">PDF</span></a>
-          <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Get in Touch</a>
         </div>
         <div class="hero-stats">
           <div class="stat-item"><h3>10+</h3><p>Years Experience</p></div>
-          <div class="stat-item"><h3>6+</h3><p>Companies</p></div>
+          <div class="stat-item"><h3>7+</h3><p>Companies</p></div>
           <div class="stat-item"><h3>20+</h3><p>Team Members Led</p></div>
           <div class="stat-item"><h3>5</h3><p>Certifications</p></div>
         </div>
@@ -614,7 +639,7 @@ section:nth-child(even) { background: var(--bg-alt); }
     </div>
     <div class="about-grid">
       <div class="about-text">
-        <p>Dynamic Technical Manager with 10+ years of expertise spanning IoT architecture, cloud platforms, web technologies, and embedded systems. Passionate about developing scalable IoT solutions, optimizing device-to-cloud data pipelines, and leading teams to build secure, high-performance applications.</p>
+        <p>Dynamic Engineering Technical Head / Director / Manager with 10+ years of expertise spanning IoT architecture, cloud platforms, web technologies, and embedded systems. Passionate about developing scalable IoT solutions, optimizing device-to-cloud data pipelines, and leading globally distributed teams to build secure, high-performance applications. Proven track record across 6+ companies, managing teams of 20+ and delivering impactful products from concept to production.</p>
         <p>From designing robust IoT ecosystems with AWS & Azure to engineering Industry 4.0 automation solutions across retail, manufacturing, and energy sectors &mdash; I bridge the gap between hardware and cloud at scale.</p>
         <div class="about-highlights">
           <div class="highlight-card reveal">
@@ -627,24 +652,23 @@ section:nth-child(even) { background: var(--bg-alt); }
             <h4>Cloud & DevOps</h4>
             <p>Kubernetes, Docker, Serverless, CI/CD pipelines</p>
           </div>
-          <div class="highlight-card reveal reveal-delay-2">
-            <i class="fas fa-brain"></i>
-            <h4>Data & AI</h4>
-            <p>Databricks, ML models, Generative AI, Real-time analytics</p>
+          <div class="highlight-card reveal reveal-delay-2" style="border-color:rgba(124,58,237,0.3);background:linear-gradient(135deg,var(--bg-card) 80%,rgba(124,58,237,0.05) 100%);">
+            <i class="fas fa-brain" style="color:#7c3aed;"></i>
+            <h4>AI &amp; ML Leadership</h4>
+            <p>Led AI use cases across 3 companies — fatigue detection, churn prediction, motion analysis, Generative AI</p>
           </div>
           <div class="highlight-card reveal reveal-delay-3">
             <i class="fas fa-users-cog"></i>
             <h4>Leadership</h4>
-            <p>Managed global teams up to 20+, Agile delivery</p>
+            <p>Head of Engineering at Circle Digital Ventures; managed global teams up to 20+, Agile delivery</p>
           </div>
         </div>
       </div>
       <div class="about-image-side">
         <div class="about-image-card reveal">
-          <h3 style="font-size:1.1rem;margin-bottom:16px;">Quick Facts</h3>
           <div class="about-info-grid">
             <div class="info-item"><label>Name</label><p>Avinash Chadalavada</p></div>
-            <div class="info-item"><label>Role</label><p>Principal Engineer</p></div>
+            <div class="info-item"><label>Role</label><p>Engineering Head/ Director/ Manager</p></div>
             <div class="info-item"><label>Experience</label><p>10+ Years</p></div>
             <div class="info-item"><label>Location</label><p>India</p></div>
             <div class="info-item"><label>Email</label><p>Avinash.chadala@gmail.com</p></div>
@@ -751,10 +775,13 @@ section:nth-child(even) { background: var(--bg-alt); }
     <div class="timeline">
 
       <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
+        <div class="timeline-dot ai-dot"></div>
+        <div class="timeline-card ai-role">
           <div class="timeline-header">
-            <div><h3>Head of Engineering</h3><span class="timeline-company">Circle Digital Ventures</span></div>
+            <div>
+              <h3>Head of Engineering <span class="ai-badge"><i class="fas fa-brain"></i> AI Leadership</span></h3>
+              <span class="timeline-company">Circle Digital Ventures</span>
+            </div>
           </div>
           <div class="timeline-meta">
             <span><i class="far fa-clock"></i> 5 Months</span>
@@ -764,46 +791,82 @@ section:nth-child(even) { background: var(--bg-alt); }
             <p><strong>Project:</strong> IoT-enabled Safety Smart Watch with PTW</p>
             <ul>
               <li>Led and scaled engineering team to build high-quality, reliable applications</li>
-              <li>Architected scalable, secure, and high-performance systems</li>
+              <li>Architected scalable, secure, and high-performance systems for mission-critical IoT device</li>
               <li>Streamlined engineering processes to boost efficiency and delivery speed</li>
-              <li>Fostered a culture of ownership and cross-functional collaboration</li>
-              <li>Contributing to the development of AI and Data journey</li>
+              <li>Fostered a culture of ownership and cross-functional collaboration across global teams</li>
+              <li>Spearheaded the AI and Data journey to unlock analytics capabilities</li>
             </ul>
           </div>
           <div class="timeline-techs">
             <span class="timeline-tech">React.js</span><span class="timeline-tech">Node.js</span>
             <span class="timeline-tech">GraphQL</span><span class="timeline-tech">Kafka</span>
-            <span class="timeline-tech">AWS</span><span class="timeline-tech">Azure</span>
-            <span class="timeline-tech">Databricks</span>
+            <span class="timeline-tech">Zookeeper</span><span class="timeline-tech">AWS</span>
+            <span class="timeline-tech">Azure</span>
+            <span class="timeline-tech ai-tech">Databricks</span>
           </div>
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
+        <div class="timeline-dot ai-dot"></div>
+        <div class="timeline-card ai-role">
           <div class="timeline-header">
-            <div><h3>Engineering Manager &mdash; Web, Cloud & Data Science</h3><span class="timeline-company">Vantiva</span></div>
+            <div>
+              <h3>Engineering Manager &mdash; Web, Cloud &amp; Data Science <span class="ai-badge"><i class="fas fa-robot"></i> AI/ML</span></h3>
+              <span class="timeline-company">Vantiva</span>
+            </div>
           </div>
           <div class="timeline-meta">
             <span><i class="far fa-clock"></i> 3.5 Years</span>
             <span><i class="fas fa-users"></i> 13 Members (Global)</span>
           </div>
           <div class="timeline-desc">
-            <p><strong>Project:</strong> IoT-enabled Smart Warehouse & Wi-Fi Mesh Systems</p>
+            <p><strong>Project:</strong> IoT-enabled Smart Warehouse &amp; Wi-Fi Mesh Systems</p>
             <ul>
-              <li>Led end-to-end IoT system architecture, integrating edge computing, cloud analytics, and real-time telemetry</li>
-              <li>Key member of the founding team (initially 5 members), involved in strategic planning and team expansion</li>
-              <li>Designed AI/ML flow using Gradient Boosting Residual Correction and Prophet models</li>
-              <li>Built data engineering pipeline with Databricks</li>
-              <li>Improved frontend performance & accessibility, reducing load time by 40%</li>
+              <li>Led end-to-end IoT system architecture with edge computing, cloud analytics, and real-time telemetry</li>
+              <li>Key founding team member (initially 5); drove strategic planning and team expansion to 13</li>
+              <li class="ai-use-case"><strong>AI Use Case — Customer Churn Prediction:</strong> Built ML pipeline using Gradient Boosting &amp; Prophet models to predict customer churn, enabling proactive retention and reducing churn risk</li>
+              <li class="ai-use-case"><strong>AI Use Case — Motion-Based Staff Augmentation:</strong> Developed computer-vision motion analysis system to optimise warehouse staff allocation in real time, improving operational throughput</li>
+              <li>Built enterprise-grade data engineering pipeline with Databricks for large-scale telemetry processing</li>
+              <li>Improved frontend performance &amp; accessibility, reducing load time by 40%</li>
               <li>Optimized embedded Linux firmware (OpenWRT, UCI, UBus) for IoT device connectivity</li>
             </ul>
           </div>
           <div class="timeline-techs">
             <span class="timeline-tech">React.js</span><span class="timeline-tech">TypeScript</span>
-            <span class="timeline-tech">Kafka</span><span class="timeline-tech">Python</span>
-            <span class="timeline-tech">OpenWRT</span><span class="timeline-tech">Databricks</span>
+            <span class="timeline-tech">Kafka</span><span class="timeline-tech">Node.js</span>
+            <span class="timeline-tech ai-tech">Python</span><span class="timeline-tech">OpenWRT</span>
+            <span class="timeline-tech">AWS</span><span class="timeline-tech">Azure</span>
+            <span class="timeline-tech ai-tech">Databricks</span><span class="timeline-tech ai-tech">Scikit-learn</span>
+            <span class="timeline-tech ai-tech">Prophet</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot ai-dot"></div>
+        <div class="timeline-card ai-role">
+          <div class="timeline-header">
+            <div>
+              <h3>IoT Solutions Lead &mdash; Health &amp; Safety <span class="ai-badge"><i class="fas fa-microchip"></i> AI-Driven</span></h3>
+              <span class="timeline-company">Sol-X</span>
+            </div>
+            <span style="font-size:0.82rem;color:var(--text-muted);font-weight:500;">Health &amp; Safety Tech Platform</span>
+          </div>
+          <div class="timeline-desc">
+            <p><strong>Project:</strong> Health &amp; Safety Dashboard with AI-Driven Fatigue Analysis</p>
+            <ul>
+              <li class="ai-use-case"><strong>AI Use Case — Fatigue Analysis:</strong> Engineered a real-time fatigue detection engine using wearable sensor data and ML models to identify at-risk workers before incidents occur</li>
+              <li>Built H&amp;S dashboard surfacing fatigue scores, risk heatmaps, and alert timelines for safety officers</li>
+              <li>Integrated IoT wearable streams into cloud data pipelines for continuous monitoring and reporting</li>
+              <li>Designed alert &amp; escalation workflows to notify supervisors of high-fatigue personnel in hazardous zones</li>
+            </ul>
+          </div>
+          <div class="timeline-techs">
+            <span class="timeline-tech">React.js</span><span class="timeline-tech ai-tech">Python</span>
+            <span class="timeline-tech">FastAPI</span><span class="timeline-tech">AWS IoT</span>
+            <span class="timeline-tech ai-tech">ML (fatigue models)</span><span class="timeline-tech">TimescaleDB</span>
+            <span class="timeline-tech">Kafka</span>
           </div>
         </div>
       </div>
@@ -819,12 +882,12 @@ section:nth-child(even) { background: var(--bg-alt); }
             <span><i class="fas fa-users"></i> 9 Members</span>
           </div>
           <div class="timeline-desc">
-            <p><strong>Project:</strong> Cloud migration of medical device monitoring platform</p>
+            <p><strong>Project:</strong> Cloud Migration of Medical Device Monitoring Platform</p>
             <ul>
               <li>Redesigned legacy IoT architecture for cloud-based remote patient monitoring</li>
-              <li>Designed high-performance APIs and microservices architectures</li>
+              <li>Designed high-performance APIs and microservices architectures on AWS</li>
               <li>Implemented AWS IoT rules and SNS-based alerting for proactive maintenance</li>
-              <li>Converted streaming data from Kinesis to device data pipelines</li>
+              <li>Converted streaming data from Kinesis into optimized device data pipelines</li>
             </ul>
           </div>
           <div class="timeline-techs">
@@ -843,9 +906,11 @@ section:nth-child(even) { background: var(--bg-alt); }
           </div>
           <div class="timeline-meta"><span><i class="far fa-clock"></i> 13 Months</span></div>
           <div class="timeline-desc">
+            <p><strong>Project:</strong> Manufacturing Command Centre & Industry 4.0 Strategy</p>
             <ul>
-              <li><strong>Manufacturing Command Centre:</strong> Developed React.js front-end for real-time IoT monitoring, built serverless APIs with Express.js & AWS Lambda</li>
-              <li><strong>Industry 4.0 Strategy:</strong> Defined IoT adoption strategy for Adani Solar Power Plants, provided consulting on predictive maintenance & automation</li>
+              <li>Developed React.js front-end for real-time IoT monitoring dashboards</li>
+              <li>Built serverless APIs using Express.js & AWS Lambda for high-throughput data ingestion</li>
+              <li>Defined IoT adoption strategy for Adani Solar Power Plants</li>
             </ul>
           </div>
           <div class="timeline-techs">
@@ -868,9 +933,8 @@ section:nth-child(even) { background: var(--bg-alt); }
           <div class="timeline-desc">
             <p><strong>Project:</strong> Remote Monitoring for Surgical Equipment</p>
             <ul>
-              <li>Azure IoT Edge developer; built React-based device dashboard with real-time telemetry</li>
-              <li>Developed REST APIs & integrated with Azure IoT</li>
-              <li>Deployed applications using Docker & Kubernetes</li>
+              <li>Built React-based device dashboard with real-time telemetry and alert visualization</li>
+              <li>Developed REST APIs & integrated with Azure IoT; deployed with Docker & Kubernetes</li>
             </ul>
           </div>
           <div class="timeline-techs">
@@ -891,9 +955,10 @@ section:nth-child(even) { background: var(--bg-alt); }
             <span><i class="fas fa-building"></i> PepsiCo, Voltas</span>
           </div>
           <div class="timeline-desc">
+            <p><strong>Project:</strong> Smart Factory & Energy Monitoring IoT Solutions</p>
             <ul>
-              <li><strong>PepsiCo:</strong> Developed ThingWorx-based predictive maintenance for factory equipment, IoT-based waste reduction dashboards</li>
-              <li><strong>Voltas:</strong> Designed IoT-based energy tracking for chillers & AHUs, edge-to-cloud integration for real-time energy analytics</li>
+              <li><strong>PepsiCo:</strong> Developed ThingWorx-based predictive maintenance platform for factory equipment</li>
+              <li><strong>Voltas:</strong> Designed IoT-based energy tracking for chillers & AHUs with edge-to-cloud integration</li>
             </ul>
           </div>
           <div class="timeline-techs">
@@ -933,6 +998,18 @@ section:nth-child(even) { background: var(--bg-alt); }
     </div>
     <div class="projects-grid">
       <div class="project-card reveal">
+        <div class="project-card-top" style="background:linear-gradient(135deg,#0f172a,#0e7490)"><i class="fas fa-shield-alt"></i></div>
+        <div class="project-card-body">
+          <h3>H&S Dashboard — AI Fatigue Analysis</h3>
+          <p>Real-time Health & Safety dashboard with AI-driven fatigue detection engine using wearable sensor data, risk heatmaps, and escalation workflows for industrial safety officers.</p>
+          <div class="project-tags">
+            <span class="project-tag">React.js</span><span class="project-tag">FastAPI</span>
+            <span class="project-tag">AWS IoT</span><span class="project-tag">TimescaleDB</span>
+            <span class="project-tag">Kafka</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-1">
         <div class="project-card-top"><i class="fas fa-watch"></i></div>
         <div class="project-card-body">
           <h3>Safety Smart Watch IoT Platform</h3>
@@ -940,9 +1017,6 @@ section:nth-child(even) { background: var(--bg-alt); }
           <div class="project-tags">
             <span class="project-tag">React.js</span><span class="project-tag">GraphQL</span>
             <span class="project-tag">Kafka</span><span class="project-tag">AWS</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
           </div>
         </div>
       </div>
@@ -955,9 +1029,6 @@ section:nth-child(even) { background: var(--bg-alt); }
             <span class="project-tag">TypeScript</span><span class="project-tag">OpenWRT</span>
             <span class="project-tag">Databricks</span><span class="project-tag">LoRa</span>
           </div>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
-          </div>
         </div>
       </div>
       <div class="project-card reveal reveal-delay-2">
@@ -968,9 +1039,6 @@ section:nth-child(even) { background: var(--bg-alt); }
           <div class="project-tags">
             <span class="project-tag">AWS IoT</span><span class="project-tag">Kinesis</span>
             <span class="project-tag">Kubernetes</span><span class="project-tag">Serverless</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
           </div>
         </div>
       </div>
@@ -983,9 +1051,6 @@ section:nth-child(even) { background: var(--bg-alt); }
             <span class="project-tag">React.js</span><span class="project-tag">AWS Lambda</span>
             <span class="project-tag">Express.js</span><span class="project-tag">IoT</span>
           </div>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
-          </div>
         </div>
       </div>
       <div class="project-card reveal">
@@ -997,9 +1062,6 @@ section:nth-child(even) { background: var(--bg-alt); }
             <span class="project-tag">IoT Strategy</span><span class="project-tag">Predictive Maintenance</span>
             <span class="project-tag">Automation</span>
           </div>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
-          </div>
         </div>
       </div>
       <div class="project-card reveal reveal-delay-1">
@@ -1010,9 +1072,6 @@ section:nth-child(even) { background: var(--bg-alt); }
           <div class="project-tags">
             <span class="project-tag">ThingWorx</span><span class="project-tag">Edge Computing</span>
             <span class="project-tag">Analytics</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>
           </div>
         </div>
       </div>
@@ -1075,7 +1134,7 @@ section:nth-child(even) { background: var(--bg-alt); }
     <div class="contact-grid">
       <div class="contact-info">
         <h3>Contact Information</h3>
-        <p>Feel free to reach out through any of the channels below or use the contact form.</p>
+        <p>Feel free to reach out through any of the channels below.</p>
         <div class="contact-methods">
           <a href="mailto:Avinash.chadala@gmail.com" class="contact-method">
             <div class="contact-method-icon"><i class="fas fa-envelope"></i></div>
@@ -1096,25 +1155,6 @@ section:nth-child(even) { background: var(--bg-alt); }
           <a href="mailto:Avinash.chadala@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
-      <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="John Doe" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="john@example.com" required>
-        </div>
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
-        </div>
-        <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
-      </form>
     </div>
   </div>
 </section>
@@ -1125,7 +1165,7 @@ section:nth-child(even) { background: var(--bg-alt); }
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>Avinash<span>.</span></h3>
-        <p>Principal Engineer & Manager specializing in IoT Architecture, Cloud Platforms, and Full-Stack Development.</p>
+        <p>Head Engineering Director & Manager specializing in IoT Architecture, Cloud Platforms, and Full-Stack Development.</p>
       </div>
       <div class="footer-links">
         <h4>Quick Links</h4>
@@ -1162,20 +1202,13 @@ const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 const savedTheme = localStorage.getItem('theme') || 'light';
 html.setAttribute('data-theme', savedTheme);
-updateThemeIcon(savedTheme);
 
 themeToggle.addEventListener('click', () => {
   const current = html.getAttribute('data-theme');
   const next = current === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
-  updateThemeIcon(next);
 });
-
-function updateThemeIcon(theme) {
-  themeToggle.innerHTML = theme === 'dark'
-    ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-}
 
 // ---- Navbar Scroll ----
 const navbar = document.getElementById('navbar');
@@ -1234,18 +1267,6 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ---- Contact Form ----
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.btn-submit');
-  btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-  btn.style.background = '#22c55e';
-  setTimeout(() => {
-    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-    btn.style.background = '';
-    e.target.reset();
-  }, 3000);
-}
 
 // ---- Counter Animation ----
 function animateCounters() {
